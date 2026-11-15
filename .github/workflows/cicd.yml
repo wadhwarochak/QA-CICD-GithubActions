@@ -219,11 +219,14 @@ jobs:
         with:
           version: latest
 
+
       - name: Configure kubeconfig
         run: |
-          mkdir -p $HOME/.kube
-          echo "${{ secrets.EKS_KUBECONFIG }}" > $HOME/.kube/config
-          chmod 600 $HOME/.kube/config
+          aws eks update-kubeconfig \
+            --region ap-south-1 \
+            --name YOUR_EKS_CLUSTER_NAME
+
+          kubectl cluster-info
 
       - name: Deploy to EKS
         run: |
