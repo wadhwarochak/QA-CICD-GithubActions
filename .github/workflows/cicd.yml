@@ -91,3 +91,18 @@ jobs:
           name: gitleaks-report
           path: gitleaks-report.json
           if-no-files-found: warn
+
+
+  test:
+    runs-on: self-hosted
+    needs: security-check
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - name: Unit Test Cases
+      run: mvn test
