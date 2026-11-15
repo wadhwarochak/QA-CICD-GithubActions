@@ -224,7 +224,7 @@ jobs:
         run: |
           aws eks update-kubeconfig \
             --region ap-south-1 \
-            --name YOUR_EKS_CLUSTER_NAME
+            --name fabulous-funk-mongoose
 
           kubectl cluster-info
 
